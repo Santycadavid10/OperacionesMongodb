@@ -1,0 +1,37 @@
+eXJNta88PkCABMl1
+
+mongodb+srv://santiagocadavidrotavista:eXJNta88PkCABMl1@datossantiago.5fcpmof.mongodb.net/
+
+
+
+db.users.insertOne({
+    name: "santyy",
+    age:30
+});/////////////////////////////////// insertar UN  DOCUMENTOO
+
+
+db.users.insertMany([{
+    name: "jorgitttooo",
+    age:30
+},
+{
+    name: "santyyyyyyyyyyyy",
+    age:30
+},
+{
+    name: "beeeeeeeeeeeeee",
+    age:30
+},
+
+]);///////////////////////////////// INSERTAR VARIOS DOCUMENTOS
+
+
+
+db."nombredegaleria".find({name: {$eq: "andresss"}})  = buscar DOCUMENTOS igUal que
+db."nombredegaleria".find({name: {$ne: "gabriela"}})  = buscar DOCUMENTOS diferente que  
+db."nombredegaleria".find({edad: {$gt: 25}})  = buscar DOCUMENTOS mayor que 
+ db."nombredegaleria".find({edad: {$gte: 30}})  = buscar DOCUMENTOS mayor o igual que 
+ db."nombredegaleria".find({edad: {$lt: 50}})  = buscar DOCUMENTOS menor que
+ db."nombredegaleria".find({edad: {$lte: 50}})  = buscar DOCUMENTOS menor o igual que 
+ db."nombredegaleria".find({edad: {$in: [5,10,15]}})  = buscar DOCUMENTOS dentro de LA COLECCION CON VALORES IGUALES A LOS QUE ESTAN DENTRO DEL ARRAY
+ db."nombredegaleria".find({edad: {$nin: [5,10,15]}}) = buscar DOCUMENTOS dentro de LA COLECCION CON VALORES DIFERENTES A LOS QUE ESTAN DENTRO DEL ARRAY
