@@ -86,3 +86,9 @@ db.users.updateMany(
     { $set: { "salario.moneda": "dolares" } }
  )
 ////////////////////////////////////////////////////////
+
+modificar un valor especifico de todos las clavess de esa coleccion
+db.miColeccion.updateMany(
+   { clave: "valorAntiguo" },
+   { $set: { clave: "nuevoValor" } }
+)
