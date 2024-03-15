@@ -25,13 +25,28 @@ db.users.insertMany([{
 
 ]);///////////////////////////////// INSERTAR VARIOS DOCUMENTOS
 
+////////////////////////// buscar datos de colecciones 
+db.nombredecoleccion.find();
+db.nombredecoleccion.find({name: {$eq: "andresss"}})  = buscar DOCUMENTOS igUal que
+db.nombredecoleccion.find({name: {$ne: "gabriela"}})  = buscar DOCUMENTOS diferente que  
+db.nombredecoleccion.find({edad: {$gt: 25}})  = buscar DOCUMENTOS mayor que 
+ db.nombredecoleccion.find({edad: {$gte: 30}})  = buscar DOCUMENTOS mayor o igual que 
+ db.nombredecoleccion.find({edad: {$lt: 50}})  = buscar DOCUMENTOS menor que
+ db.nombredecoleccion.find({edad: {$lte: 50}})  = buscar DOCUMENTOS menor o igual que 
+ db.nombredecoleccion.find({edad: {$in: [5,10,15]}})  = buscar DOCUMENTOS dentro de LA COLECCION CON VALORES IGUALES A LOS QUE ESTAN DENTRO DEL ARRAY
+ db.nombredecoleccion.find({edad: {$nin: [5,10,15]}}) = buscar DOCUMENTOS dentro de LA COLECCION CON VALORES DIFERENTES A LOS QUE ESTAN DENTRO DEL ARRAY
 
+///////////////////////// eliminar elementos
+db.nombredecoleccion.deleteOne({ nombre: "Juan" }); = Elimina los documentos que como el parametro nombre se llame juan por ejemplo "borra el primer elemento que encuentre que cumpla el parametro
+db.nombredecoleccion.deleteMany({ edad: { $lt: 18 } }); = elimina todos los documentos que cumplan con el parametro 
+db.usuarios.findOneAndDelete(
+  { nombre: "Juan" },  // Criterio de búsqueda
+  { sort: { _id: -1 } } // Orden descendente por el campo "_id"
+);=============================== eliminar en orden descendente es decir el ultimo de la lista
 
-db."nombredegaleria".find({name: {$eq: "andresss"}})  = buscar DOCUMENTOS igUal que
-db."nombredegaleria".find({name: {$ne: "gabriela"}})  = buscar DOCUMENTOS diferente que  
-db."nombredegaleria".find({edad: {$gt: 25}})  = buscar DOCUMENTOS mayor que 
- db."nombredegaleria".find({edad: {$gte: 30}})  = buscar DOCUMENTOS mayor o igual que 
- db."nombredegaleria".find({edad: {$lt: 50}})  = buscar DOCUMENTOS menor que
- db."nombredegaleria".find({edad: {$lte: 50}})  = buscar DOCUMENTOS menor o igual que 
- db."nombredegaleria".find({edad: {$in: [5,10,15]}})  = buscar DOCUMENTOS dentro de LA COLECCION CON VALORES IGUALES A LOS QUE ESTAN DENTRO DEL ARRAY
- db."nombredegaleria".find({edad: {$nin: [5,10,15]}}) = buscar DOCUMENTOS dentro de LA COLECCION CON VALORES DIFERENTES A LOS QUE ESTAN DENTRO DEL ARRAY
+///////////////////////// ordenar colecciones
+db.nombredecoleccion.find().sort({ edad: 1 }); = // Ordenar documentos por el campo "edad" de menor a mayor
+db.usuarios.find().sort({ edad: -1 }); =  = // Ordenar documentos por el campo "edad" de  mayor a menor 
+db.usuarios.find().sort({ nombre: 1 }); = // Ordenar documentos por el campo "nombre" en orden alfabético ascendente
+db.usuarios.find().sort({ nombre: -1 }); = // Ordenar documentos por el campo "nombre" en orden alfabético decendente
+db.productos.find().sort({ categoria: 1, precio: -1 });=== // Ordenar documentos por el campo "categoria" en orden ascendente y luego por el campo "precio" en orden descendente
