@@ -7,7 +7,7 @@ mongodb+srv://santiagocadavidrotavista:eXJNta88PkCABMl1@datossantiago.5fcpmof.mo
 db.users.insertOne({
     name: "santyy",
     age:30
-});/////////////////////////////////// insertar UN  DOCUMENTOO
+});/////////////////////////////////// insertar UN  DOCUMENTOO en la coleecion
 
 
 db.users.insertMany([{
@@ -23,7 +23,11 @@ db.users.insertMany([{
     age:30
 },
 
-]);///////////////////////////////// INSERTAR VARIOS DOCUMENTOS
+]);///////////////////////////////// INSERTAR VARIOS DOCUMENTOS en la coloccion
+
+
+////////////////////////////////////borrar
+ db.users.deleteMany({});// borra todos los documentos
 
 ////////////////////////// buscar datos de colecciones 
 db.nombredecoleccion.find();
@@ -44,9 +48,41 @@ db.usuarios.findOneAndDelete(
   { sort: { _id: -1 } } // Orden descendente por el campo "_id"
 );=============================== eliminar en orden descendente es decir el ultimo de la lista
 
+db.users.updateone(
+    {},
+    { $unset: { "formatosalario": "" } }
+ )========================================elimina un una sola clave del documento con el nombre que esta dentro de comillas
+
+db.Nombredelacoleccion.updateMany(
+    {},
+    { $unset: { "clave a eliminar sin importar su valor": "" } }
+ )============== elimina todas las llaves que tenga ese documente con el nombre que esta dentro de comillas
+
+
+
+
 ///////////////////////// ordenar colecciones
 db.nombredecoleccion.find().sort({ edad: 1 }); = // Ordenar documentos por el campo "edad" de menor a mayor
 db.usuarios.find().sort({ edad: -1 }); =  = // Ordenar documentos por el campo "edad" de  mayor a menor 
 db.usuarios.find().sort({ nombre: 1 }); = // Ordenar documentos por el campo "nombre" en orden alfabético ascendente
 db.usuarios.find().sort({ nombre: -1 }); = // Ordenar documentos por el campo "nombre" en orden alfabético decendente
 db.productos.find().sort({ categoria: 1, precio: -1 });=== // Ordenar documentos por el campo "categoria" en orden ascendente y luego por el campo "precio" en orden descendente
+
+
+
+
+/////////////////////////modificar colecciones
+modificar llaves
+
+db.miColeccion.updateMany(
+   {},
+   { $rename: { "claveAntigua": "claveNueva" } }
+)======================================= modifica todos los nombres de las claves de la coleccion que tenga el nombre antiguo
+
+///////////////////////////////////////////////////////////////////
+MODIFICA EL VALOR DEl  VALOR 
+db.users.updateMany(
+    {},
+    { $set: { "salario.moneda": "dolares" } }
+ )
+////////////////////////////////////////////////////////
