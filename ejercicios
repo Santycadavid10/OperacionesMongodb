@@ -259,6 +259,106 @@ db.users.insertMany([
           valor: 80,
           medida: "kilos"
         }
+      },
+      {
+        nombres: "jsandraa",
+        apellidos: "gakith",
+        ciudad: "torini",
+        país: "Francia",
+        salario: {
+          valor: 500,
+          moneda: "dolares"
+        },
+        edad: 16,
+        altura: {
+          valor: 2,
+          medida: "cm"
+        },
+        peso: {
+          valor: 80,
+          medida: "kilos"
+        }
+      },
+
+      {
+        nombres: "ronaldhino",
+        apellidos: "gakith",
+        ciudad: "janeiro",
+        país: "brasil",
+        salario: {
+          valor: 500,
+          moneda: "dolares"
+        },
+        edad: 20,
+        altura: {
+          valor: 250000,
+          medida: "cm"
+        },
+        peso: {
+          valor: 80,
+          medida: "kilos"
+        }
+      },
+
+      {
+        nombres: "robertocarlos",
+        apellidos: "gakith",
+        ciudad: "dualina",
+        país: "brasil",
+        salario: {
+          valor: 500,
+          moneda: "dolares"
+        },
+        edad: 20,
+        altura: {
+          valor: 250000,
+          medida: "cm"
+        },
+        peso: {
+          valor: 150,
+          medida: "kilos"
+        }
+      },
+
+      {
+        nombres: "felipe",
+        apellidos: "gakith",
+        ciudad: "dualina",
+        país: "brasil",
+        salario: {
+          valor: 500,
+          moneda: "dolares"
+        },
+        edad: 20,
+        altura: {
+          valor: 250000,
+          medida: "cm"
+        },
+        peso: {
+          valor: 130,
+          medida: "kilos"
+        }
+      }
+      ,
+
+      {
+        nombres: "felipe",
+        apellidos: "gakith",
+        ciudad: "dualina",
+        país: "chile",
+        salario: {
+          valor: 500,
+          moneda: "dolares"
+        },
+        edad: 20,
+        altura: {
+          valor: 250000,
+          medida: "cm"
+        },
+        peso: {
+          valor: 130,
+          medida: "kilos"
+        }
       }
 
   ]);
@@ -379,4 +479,60 @@ db.users.find({
 db.users.find({ "correo": { $exists: false } })
 
 
-//14) Obtener todos los usuarios que sean de Francia y que su salario esté entre $3000 y $5000 al mes.
+//14) Obtener todos los usuarios que sean de Francia y que su salario esté entre $3000 y $6000 al mes.
+
+db.users.find({ 
+    "país": { $eq: "Francia"} ,
+    
+    $and:[{"salario.valor": { $gte: 3000}},{"edad": {$lte: 5000}}]
+   
+});
+
+//15 Obtener todos los usuarios que sean de Brasil y que tengan un peso menor a 120 libras o más de 140 libras.
+
+db.users.find({ 
+    "país": { $eq: "brasil"},
+    $or: [{"peso.valor": { $lt: 120}},{"peso.valor": { $lt: 140}}]
+   
+});
+
+//16)) Obtener todos los usuarios que sean de Argentina o de Chile y que tengan una edad menor a 25 años.
+
+db.users.find({ 
+    "edad": { $lt: 25},
+    $or: [{"país": { $eq: "Argentina"}},{"país": { $eq: "chile"}}]
+   
+});
+
+//Ejercicio_17 : Obtener a todos los usuarios que no sean de España ni de México y que ganen menos de $3000 al mes.
+
+db.users.find({
+    country:{$nin:["España","Mexico"]}, 
+    salary :{$lt:3000}
+});
+
+//Ejercicio_18 : Obtener todos los usuarios que sean de Alemania y que tengan un salario menor a $4000 o una edad mayor a 35 años.
+
+db.users.find({
+    country:"Alemania",
+    $or:[{
+        salary:{$lt: 4000},
+        age:{$gt: 35}
+    }]
+});
+
+//Ejercicio_19 : Obtener todos los usuarios que no sean de Colombia y que su altura sea menor a 170 cm.
+
+db.usuarios.find({
+    $and: [
+        { counnty: { $ne: "Colombia" } },
+        { heigth: { $lt: 170 } }
+    ]
+});
+
+//Ejercicio_20 : Obtener todos los usuarios que sean de India y que no tengan un salario registrado.
+
+db.users.find({
+    country: "India",
+    salary: { "$exists": false }
+})
